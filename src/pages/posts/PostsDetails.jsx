@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import calsses from "./PostsPage.module.css"
-
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import classes from "./PostsPage.module.css";
 const PostsDetails = () => {
-  const navigate = useNavigate();
   const params = useParams();
- 
-
-  const [post, setUser] = useState(null);
+  const navigate = useNavigate();
+  console.log(params);
+  const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -16,7 +14,7 @@ const PostsDetails = () => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
       .then((response) => response.json())
       .then((data) => {
-        setUser(data);
+        setPost(data);
         setError("");
       })
       .catch((err) => setError(err.message))
@@ -30,12 +28,15 @@ const PostsDetails = () => {
   return (
     <div>
       {loading || !post ? (
-        "loading..."
+        "Loading..."
       ) : (
-        <div className={calsses.content2}>
-          <button onClick={() => navigate( "/posts")}>Back</button>
-       <h1 className={calsses.nav}> {post.id} <br />  {post.title} <br /></h1>
-       <div> {post.body}</div>
+        <div className={classes.bos}>
+          <button onClick={() => navigate("/posts")}>Back</button><br/>
+          <b className={classes.pp}>
+            {post.id} <br />
+            {post.title}
+          </b>
+          <div >{post.body}</div>
         </div>
       )}
     </div>

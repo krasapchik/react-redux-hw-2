@@ -12,7 +12,7 @@ import {
   import { NavbarMenu } from "../";
   import { useEffect, useState } from "react";
   import { useNavigate } from "react-router-dom";
-  
+
   const App = () => {
     return (
       <Router>
@@ -34,11 +34,11 @@ import {
               </Protected>
             }
           />
-          <Route
+          <Route 
             path="/posts"
             element={
-              <Protected>
-                <PostsPage />
+              <Protected >
+                <PostsPage  />
               </Protected>
             }
           />
